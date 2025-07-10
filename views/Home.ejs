@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Timeline</h1>
+        
+</header>
+     <div class="container">
+    
+
+      <h4 class="post-btn">Post a message</h4>
+    
+    
+
+    <form method="post" action="/Add">
+      <input type="text" name="title" required minlength="25">
+      <button type="submit" class="post-btn">Post a message</button>
+    </form>
+
+    </div>
+
+        <% if (posts.length > 0) { %>
+        <% posts.forEach((post) => { %>
+        
+        <div class="post">
+            <h3><%= post.title %></h3>
+            
+            
+
+                <% if (post.commentId.length > 0) { %>
+                <% post.commentId.forEach((comment) => { %>
+        <div class="comment"><%= comment.commentBody %></div>
+                    <% }) %>
+                <% } %>
+
+                <form method="post" action="/Comment/<%= post._id %>">
+                    <h5 >Post a comment</h5>
+                    <input type="text" name="commentBody"  required minlength="25" />
+                    <button class="comment-btn">Add Comment</button>
+                </form>
+                </div>
+            <% }) %>
+            <% } %>
+
+            
+
+</body>
+</html> 
